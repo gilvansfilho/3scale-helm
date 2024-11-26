@@ -1,0 +1,15 @@
+﻿apiVersion: capabilities.3scale.net/v1beta1
+kind: Application
+metadata:
+  name: application-ses
+  namespace: 3scale
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+spec:
+  accountCR:
+    name: gfilho-dev-account
+  applicationPlanName: default
+  description: 'testing application '
+  name: testApp
+  productCR:
+    name: product1

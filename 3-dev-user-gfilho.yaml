@@ -1,0 +1,15 @@
+﻿apiVersion: capabilities.3scale.net/v1beta1
+kind: DeveloperUser
+metadata:
+  name: dev-user-gfilho
+  namespace: 3scale
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  developerAccountRef:
+    name: dev-account-gfilho
+  email: gfilho@example.com
+  passwordCredentialsRef:
+    name: dev-user-gfilho-secret
+  role: admin
+  username: gfilho-admin-user

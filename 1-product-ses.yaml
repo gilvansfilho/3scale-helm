@@ -1,0 +1,50 @@
+﻿apiVersion: capabilities.3scale.net/v1beta1
+kind: Product
+metadata:
+  name: product-ses
+  namespace: 3scale
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  metrics:
+    hits:
+      description: Number of API hits
+      friendlyName: Hits
+      unit: hit
+  deployment:
+    apicastHosted:
+      authentication:
+        oidc:
+          authenticationFlow:
+            directAccessGrantsEnabled: true
+            implicitFlowEnabled: true
+            serviceAccountsEnabled: true
+            standardFlowEnabled: true
+          issuerEndpoint: 'https://3scale:nh7stXY97w4LI5eyytZpVjk8s1pvIffR@keycloak-sso.apps.cluster-lcxgl.lcxgl.sandbox355.opentlc.com/auth/realms/scale'
+          issuerType: keycloak
+          jwtClaimWithClientID: azp
+          jwtClaimWithClientIDType: plain
+  backendUsages:
+    backend-ses-echo:
+      path: /ses
+  mappingRules:
+    - httpMethod: GET
+      increment: 1
+      metricMethodRef: hit
+      pattern: /
+    - httpMethod: POST
+      increment: 1
+      metricMethodRef: hit
+      pattern: /
+  name: Produto SES
+  policies:
+    - configuration: {}
+      configurationRef: {}
+      enabled: true
+      name: apicast
+      version: builtin
+  systemName: product-ses
+  applicationPlans:
+    default:
+      name: default
+  description: Produto da SES

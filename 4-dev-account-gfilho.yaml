@@ -1,0 +1,9 @@
+﻿apiVersion: capabilities.3scale.net/v1beta1
+kind: DeveloperAccount
+metadata:
+  name: dev-account-ses
+  namespace: 3scale
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+spec:
+  orgName: org-ses
